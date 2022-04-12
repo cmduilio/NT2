@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <title>Clase3</title>
+    
+</head>
+
+<body>
+    <div id="app">
+        <p v-text="miTexto" v-if="miContador == 0" :title="getMensaje()"></p>
+        <p v-text="miTexto" v-if="miContador == 0" :title="miMensaje"></p>
+        <button type="button" @click="aumentarContador">aumentarContador</button>
+        <h1>Contador: {{ miContador }}</h1>
+        <div v-for="personaje in personajes" :key="index">
+            <div>
+                {{personaje.nombre}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                miTexto: 'hola',
+                miContador: 0,
+                personajes: [{nombre: 'nombre1'}, {nombre: 'nombre2'} ],
+                miMensaje: "mensajesito",
+            }
+        },
+        methods:{
+            getMensaje(){
+                return "esto es un mensaje extra"
+            },
+            aumentarContador(){
+                this.miContador++
+            }
+        }
+    })
+</script>
