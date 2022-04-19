@@ -20,7 +20,8 @@
         <p v-text="miTexto" v-if="miContador == 0" :title="miMensaje"></p>
         <button type="button" @click="aumentarContador">aumentarContador</button>
         <h1>Contador: {{ miContador }}</h1>
-        <div v-for="personaje in personajes" :key="index">
+        <input type="text" v-model="nombreAFiltrar"/>
+        <div v-for="(personaje, index) in filterPersonajesByName" :key="index">
             <div>
                 {{personaje.nombre}}
             </div>
@@ -36,8 +37,9 @@
             return {
                 miTexto: 'hola',
                 miContador: 0,
-                personajes: [{nombre: 'nombre1'}, {nombre: 'nombre2'} ],
+                personajes: [],
                 miMensaje: "mensajesito",
+                nombreAFiltrar: 'asd',
             }
         },
         methods:{
@@ -45,7 +47,24 @@
                 return "esto es un mensaje extra"
             },
             aumentarContador(){
-                this.miContador++
+                ++this.miContador
+            }
+        },
+        async created() {
+            this.personajes = [{nombre: 'nombre1'}, {nombre: 'nombre2'} ]
+        },
+        computed: {
+            // investigar el concepto y generar un filtro por nombre sobre el array del personaje
+            filterPersonajesByName() {
+                if (this.nombreAFiltrar === undefined || this.nombreAFiltrar === null || this.nombreAFiltrar === ''){
+                    console.log('asd')
+                    return this.personajes;
+                }
+                else
+                {
+                    console.log('dsa')
+                    return this.personajes.filter(pj => pj.nombre === this.nombreAFiltrar);
+                }
             }
         }
     })
