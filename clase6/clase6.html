@@ -24,12 +24,14 @@
         <div class='row'>
             <lista v-for="(personaje, index) in charactersRAM" :key="personaje.name" @app-titulo-click="clickBB($event)" :character="personaje"></lista>
         </div>
+<!--
+        <otraLista :myLista="charactersRAM"></otraLista>
+-->
     </div>
 </body>
 </html>
 
 <script>
-
     Vue.component('lista', {
         template: 
             `<div class="card" style="width: 18rem;">
@@ -45,7 +47,29 @@
                this.$emit('app-titulo-click',this.character)
            }
        },
+    }) 
+
+/*
+    Vue.component('otraLista', {
+        template: 
+            `<div class="row" v-for="(personaje, index) in myLista" :key="personaje.name" @app-titulo-click="clickBB($event)" >
+                <div class="card" style="width: 18rem;">
+                    <img :src=personaje.image class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{personaje.name}}</h5>
+                    </div>
+                    <button @click="informar" class="btn btn-primary">Click!</button>
+                </div>
+            </div>`,
+        props: ['myLista'] ,
+        methods: {
+           informar(){
+               this.$emit('app-titulo-click','asd')
+           }
+       },
     })
+
+*/   
     const vue = new Vue({
         el:'#app',
         data(){
