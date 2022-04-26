@@ -92,8 +92,9 @@
             }
         },
         async created() {
-            const response = await fetch(this.urlRAM)
-            const {info, results} = await response.json()
+            const [response, responseBB] = await Promise.all([fetch(this.urlRAM), fetch(this.urlBB)])
+            //const response = await fetch(this.urlRAM)
+            const [{info, results}, charactersBB] = await Promise.all([response.json(), responseBB.json()])
 
             for(let index = 0; index < 5; index++){
                 this.charactersRAM.push({
@@ -102,8 +103,8 @@
                 })
             }
 
-            const responseBB = await fetch(this.urlBB)
-            const charactersBB = await responseBB.json()
+            //const responseBB = await fetch(this.urlBB)
+            //const charactersBB = await responseBB.json()
             
             for(let index = 0; index < 5; index++){
                 this.charactersBB.push({
